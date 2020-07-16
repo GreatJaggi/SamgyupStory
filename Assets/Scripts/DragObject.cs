@@ -16,41 +16,94 @@ public class DragObject : MonoBehaviour
 
     
     Touch touch;
+    Transform target;
+    float targetYLock = 0;
     private void Update()
     {
+
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            GetTarget(Input.mousePosition);
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            DragTarget(Input.mousePosition);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            ReleasTarget();
+        }
+        
+        
         if(Input.touchCount > 0)
         {
             touch = Input.GetTouch(0);
-            Transform target = null;
-
-            RaycastHit hit;
-
             // Touch Begining (OnMouseDown)
             if (touch.phase == TouchPhase.Began)
             {
-                Vector3 touchPos = touch.position;
-                Ray ray = Camera.main.ScreenPointToRay(touchPos);
-                if (Physics.Raycast(ray, out hit) && (hit.collider.tag == "Draggable"))
-                {
-                    Debug.Log("Here");
-                    target = hit.transform;
-                }
-
-                OnTouchDown(target);
+                GetTarget(touch.position);
             }
 
             // Touch Moving (OnMouseDrag)
             if(touch.phase == TouchPhase.Moved)
             {
-                OnTouchDrag(target);
+                DragTarget(touch.position);
             }
 
             // Touch Ended (OnMouseUp)
             if(touch.phase == TouchPhase.Ended)
             {
-                OnTouchEnded();
+                ReleasTarget();
             }
         }
+        
+    }
+
+    void GetTarget(Vector3 inputPos)
+    {
+        if (target != null) return;
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(inputPos);
+
+        if (Physics.Raycast(ray, out hit, 100.0f))
+            if (hit.transform.gameObject.tag == "Food" && target == null)
+            {
+                targetYLock = hit.transform.localPosition.y;
+                target = hit.transform;
+
+                #region Cooking and Tapping
+                if (target.GetComponent<Food>().isCooking)
+                    target.GetComponent<Food>().Eat();
+                #endregion
+            }
+    }
+
+    void DragTarget(Vector3 inputPos)
+    {
+        if (target == null || target.GetComponent<Food>().isCooking) return;
+
+        RaycastHit hit;
+        target.GetComponent<Rigidbody>().isKinematic = true;
+        Ray ray = Camera.main.ScreenPointToRay(inputPos);
+
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            Debug.DrawRay(hit.point, Vector3.down, Color.red);
+            if (target != null)
+            {
+                target.transform.position = new Vector3(hit.point.x, 7.5f, hit.point.z);
+            }
+        }
+    }
+
+    void ReleasTarget()
+    {
+        if (target == null) return;
+        target.GetComponent<Rigidbody>().isKinematic = false;
+        target = null;
     }
 
     #region Handle Touch
@@ -98,6 +151,7 @@ public class DragObject : MonoBehaviour
     
     #endregion
 
+    /*
     #region Handle Mouse
     void OnMouseDown()
     {
@@ -132,9 +186,11 @@ public class DragObject : MonoBehaviour
 
         GetComponent<Rigidbody>().isKinematic = true; // Disables physics
 
+        
+
         // tranform and lock on y axis
         //transform.position = new Vector3(GetMouseAsWorldPoint().x + mOffset.x, yLock, GetMouseAsWorldPoint().z + mOffset.z * 10); // + ZOffset
-        transform.position = new Vector3(GetMouseAsWorldPoint().x + mOffset.x, yLock, GetMouseAsWorldPoint().z);
+        transform.position = new Vector3(GetMouseAsWorldPoint().x + mOffset.x, yLock, GetMouseAsWorldPoint().z);// GetMouseAsWorldPoint().y);
     }
 
     private void OnMouseUp()
@@ -142,5 +198,5 @@ public class DragObject : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = false;
     }
     #endregion
-
+    */
 }
