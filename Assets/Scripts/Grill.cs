@@ -38,5 +38,6 @@ public class Grill : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         other.gameObject.GetComponent<Food>().StopCooking();
+        other.gameObject.GetComponent<Food>().isCooking = false;
     }
 }

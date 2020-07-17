@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         mainCamAnim.SetBool("Play", true);
     }
 
+    public void LevelSelect()
+    {
+        mainCamAnim.SetBool("LevelSelection", true);
+    }
+
     public void LevelFailed()
     {
         levelFailedWindow.SetActive(true);

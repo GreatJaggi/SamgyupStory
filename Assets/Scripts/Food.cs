@@ -37,8 +37,9 @@ public class Food : MonoBehaviour
         StopCooking();
         Cat.instance.AddSatisfaction(foodObject.satisfactionPoint[(int)foodObject.doneness]);
         GameObject.Find("Satisfaction Bar").GetComponent<Slider>().value = Cat.instance.GetSatisfaction();
-        
-        Destroy(this.gameObject);
+
+        this.gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
 
     IEnumerator StartCooking()

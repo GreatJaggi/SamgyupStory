@@ -14,14 +14,27 @@ public class SatisfactionBar : MonoBehaviour
         slider.maxValue = gauge;
     }
 
+
+    public Slider goalBar;
+    public void SetGoalBar()
+    {
+        goalBar.maxValue = slider.maxValue;
+        goalBar.value = goal;
+    }
+
     public void CheckGoal()
     {
-        if (slider.value == goal)
+        if (slider.value >= goal)
         {
             print("Level Completed!");
             GameManager.instance.LevelCompleted();
+            GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
+            foreach(GameObject food in foods)
+            {
+                food.GetComponent<Food>().StopAllCoroutines();
+                //food.GetComponent<Food>().isCooking = false;
+            }
         }
-
 
         else if (GameObject.FindGameObjectsWithTag("Food").Length == 1)
         {
