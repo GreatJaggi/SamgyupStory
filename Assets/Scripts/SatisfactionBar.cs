@@ -18,30 +18,47 @@ public class SatisfactionBar : MonoBehaviour
     public Slider goalBar;
     public void SetGoalBar()
     {
+        slider.value = 0;
+        GameManager.instance.rating = 0;
+        Cat.instance.satisfaction = 0;
+
+        slider.maxValue = goal;
         goalBar.maxValue = slider.maxValue;
         goalBar.value = goal;
+
+        /*
+        // Partitioned Value Slider / Goal
+        goalBar.maxValue = slider.maxValue;
+        goalBar.value = goal;
+        */
     }
 
     public void CheckGoal()
     {
         if (slider.value >= goal)
         {
-            print("Level Completed!");
-            GameManager.instance.LevelCompleted();
             GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
             foreach(GameObject food in foods)
             {
                 food.GetComponent<Food>().StopAllCoroutines();
                 //food.GetComponent<Food>().isCooking = false;
             }
+
+            print("Level Finish! Satisfied!");
+
+            GameManager.instance.SetRating(3);
+
+            GameManager.instance.LevelCompleted();
         }
 
         else if (GameObject.FindGameObjectsWithTag("Food").Length == 1)
         {
-            // this means there's only 1 food to eat if not completed level failed
-            print("Level Failed)");
-            GameManager.instance.LevelFailed();
+            print("Level Finish! Nice Try!");
+
+            // Formula: r = v / ( g / 3 )
+            GameManager.instance.SetRating((int)Mathf.Floor(slider.value / (goal / 3)));
+
+            GameManager.instance.LevelCompleted();
         }
-            
     }
 }

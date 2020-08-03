@@ -63,7 +63,7 @@ public class DragObject : MonoBehaviour
     void DragTarget(Vector3 inputPos)
     {
         if (target == null || target.GetComponent<Food>().isCooking) return;
-
+        
         RaycastHit hit;
         target.GetComponent<Rigidbody>().isKinematic = true;
         Ray ray = Camera.main.ScreenPointToRay(inputPos);
@@ -87,7 +87,7 @@ public class DragObject : MonoBehaviour
     }
 
     #region Debug GUI
-    void OnGUI()
+    void xOnGUI()
     {
         int w = Screen.width, h = Screen.height;
 

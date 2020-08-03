@@ -12,9 +12,17 @@ public class Food : MonoBehaviour
 
     public FoodScriptable foodObject;
 
+    public enum Doneness
+    {
+        Raw = 0,
+        Done = 1,
+        Burnt = 2
+    };
+    public Doneness doneness;
+
     private void Awake()
     {
-        foodObject.doneness = FoodScriptable.Doneness.Raw;
+        doneness = Doneness.Raw;
         isCooking = false;
     }
 
@@ -35,11 +43,12 @@ public class Food : MonoBehaviour
     public void Eat()
     {
         StopCooking();
-        Cat.instance.AddSatisfaction(foodObject.satisfactionPoint[(int)foodObject.doneness]);
+        Cat.instance.AddSatisfaction(foodObject.satisfactionPoint[(int)doneness]);
         GameObject.Find("Satisfaction Bar").GetComponent<Slider>().value = Cat.instance.GetSatisfaction();
+        GameObject.Find("Satisfaction Bar").GetComponent<SatisfactionBar>().CheckGoal();
 
-        this.gameObject.SetActive(false);
-        //Destroy(this.gameObject);
+        //this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     IEnumerator StartCooking()
@@ -61,13 +70,13 @@ public class Food : MonoBehaviour
 
     void ReplaceCookedFood()
     {
-        foodObject.doneness = FoodScriptable.Doneness.Done;
+        doneness = Doneness.Done;
         GetComponent<Renderer>().material = foodMaterials[0];
     }
 
     void ReplaceOvercookedFood()
     {
         GetComponent<Renderer>().material = foodMaterials[1];
-        foodObject.doneness = FoodScriptable.Doneness.Burnt;
+        doneness = Doneness.Burnt;
     }
 }

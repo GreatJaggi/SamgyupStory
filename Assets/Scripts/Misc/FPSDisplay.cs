@@ -20,7 +20,7 @@ public class FPSDisplay : MonoBehaviour
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = h * 2 / 100;
         style.fontStyle = FontStyle.Bold;
-        style.normal.textColor = new Color(0f, 1f, 1f, 1.0f);
+        style.normal.textColor = new Color(0f, 0f, 0f, 1.0f);
         float msec = deltaTime * 1000.0f;
         float fps = 1.0f / deltaTime;
         string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);

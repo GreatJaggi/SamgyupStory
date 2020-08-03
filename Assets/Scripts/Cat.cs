@@ -24,7 +24,7 @@ public class Cat : MonoBehaviour
     public void AddSatisfaction(float value)
     {
         satisfaction += value;
-        Debug.Log(string.Format("Added {0} to Satisfaction", value));
+        satisfaction = satisfaction > 0 ? satisfaction : 0;
     }
 
     public float GetSatisfaction()
