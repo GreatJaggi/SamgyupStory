@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Food : MonoBehaviour
 {
-    public float[] SPD = new float[3];
+    public float[] stepsPerDoneness;
 
     public bool isCooking;
 
