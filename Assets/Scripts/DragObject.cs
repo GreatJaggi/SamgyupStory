@@ -73,7 +73,7 @@ public class DragObject : MonoBehaviour
             Debug.DrawRay(hit.point, Vector3.down * 5f, Color.red);
             if (target != null)
             {
-                target.transform.position = new Vector3(hit.point.x, targetYLock, hit.point.z);
+                target.transform.position = new Vector3(hit.point.x, -1.75f, hit.point.z);
             }
         }
     }

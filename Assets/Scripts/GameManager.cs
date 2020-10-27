@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void LevelSelect()
     {
-        mainCamAnim.SetBool("LevelSelection", true);
+        // mainCamAnim.SetBool("LevelSelection", true);
     }
 
     public void MainMenu()

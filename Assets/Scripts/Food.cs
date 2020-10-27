@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class Food : MonoBehaviour
 {
-    public float[] stepsPerDoneness;
+    // public float[] stepsPerDoneness;
 
     public bool isCooking;
+    public bool canCookOnGrillZone = false;
 
     public Material[] foodMaterials;
 
@@ -51,8 +52,34 @@ public class Food : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    IEnumerator StartCooking()    {
+        transform.GetChild(0).gameObject.SetActive(true); // Set Cooking Smoke FX Enabled
+
+        while(doneness != Doneness.Burnt)   {
+            if(doneness == Doneness.Raw)    {
+                yield return new WaitForSeconds(foodObject.cookingTimer[0]);
+                GetComponent<Renderer>().material = foodMaterials[0];
+                GetComponent<Rigidbody>().AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
+                doneness = Doneness.Done;
+            }
+
+            if(doneness == Doneness.Done)   {
+                yield return new WaitForSeconds(foodObject.cookingTimer[1]);
+                GetComponent<Renderer>().material = foodMaterials[1];
+                GetComponent<Rigidbody>().AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
+                doneness = Doneness.Burnt;
+            }
+        }
+
+        // Burnt Segment
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true); // Set Burnt Smoke FX Enabled
+
+        yield return null;
+    }
+/*
     IEnumerator StartCooking()
-    {
+    {s
         //GetComponent<Animator>().SetBool("Cooking", true);
         transform.GetChild(0).gameObject.SetActive(true);
 
@@ -67,7 +94,7 @@ public class Food : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(Vector3.up * 1.5f, ForceMode.Impulse);
         yield return null;
     }
-
+*/
     void ReplaceCookedFood()
     {
         doneness = Doneness.Done;
@@ -76,7 +103,7 @@ public class Food : MonoBehaviour
 
     void ReplaceOvercookedFood()
     {
-        GetComponent<Renderer>().material = foodMaterials[1];
         doneness = Doneness.Burnt;
+        GetComponent<Renderer>().material = foodMaterials[1];
     }
 }
