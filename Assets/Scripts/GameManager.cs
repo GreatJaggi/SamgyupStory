@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     #region Singleton
     public static GameManager instance;
 
+    public UnityEvent levelCompleteEvent;
+
     public GameObject levelCompleteWindow;
-    public GameObject levelFailedWindow;
+    // public GameObject levelFailedWindow;
 
     public int rating;
     public string satisfactionMessage;
@@ -44,20 +47,20 @@ public class GameManager : MonoBehaviour
         mainCamAnim.SetBool("LevelSelection", false);
     }
 
-    public void LevelFailed()
-    {
-        levelFailedWindow.SetActive(true);
-    }
+    // public void LevelFailed()
+    // {
+    //     levelFailedWindow.SetActive(true);
+    // }
 
     public void LevelCompleted()
     {
-        levelCompleteWindow.SetActive(true);
+        levelCompleteEvent.Invoke();
     }
 
     public void SetRating(int value)
     {
-        print("SETTING: " + value + " > " + (int)ES3.Load("Rating_LevelIndex_" + currentLevelIndex, 0));
-        if (value > (int)ES3.Load("Rating_LevelIndex_" + currentLevelIndex, 0))
+        print("SETTING: " + value + " >= " + (int)ES3.Load("Rating_LevelIndex_" + currentLevelIndex, 0));
+        if (value >= (int)ES3.Load("Rating_LevelIndex_" + currentLevelIndex, 0))
         {
             rating = value;
             ES3.Save("Rating_LevelIndex_" + currentLevelIndex, rating);

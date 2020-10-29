@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Food
   - Grill
+  - Dishware
   layers:
   - Default
   - TransparentFX

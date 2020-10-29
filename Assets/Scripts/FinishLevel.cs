@@ -10,6 +10,10 @@ public class FinishLevel : MonoBehaviour
     
     private void OnEnable()
     {
+        ResetLevel();
+    }
+
+    public void ResetLevel()    {
         PopulateUI();
         CleanStage();
     }
@@ -32,7 +36,11 @@ public class FinishLevel : MonoBehaviour
     void CleanStage()
     {
         GameObject[] foods = GameObject.FindGameObjectsWithTag("Food");
+        GameObject[] dishwares = GameObject.FindGameObjectsWithTag("Dishware");
         foreach (GameObject food in foods)
             Destroy(food);
+            
+        foreach(GameObject dishware in dishwares) 
+            Destroy(dishware);
     }
 }
