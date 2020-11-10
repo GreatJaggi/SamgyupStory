@@ -3,7 +3,10 @@ guid: 84574abcdca747b4da3052aec7666331
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - foodObject: {instanceID: 0}
+  - doneSparkleFX: {fileID: 2631672852600036412, guid: 68e653d3958ea02468189a2264858575,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
