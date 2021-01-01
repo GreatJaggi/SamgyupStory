@@ -8,10 +8,15 @@ public class AudioController : MonoBehaviour
     public AudioMixer mixer;
     public AudioSource meow;
     public AudioSource eat;
+
+    public AudioSource sizzle;
+    public AudioSource tada;
     public static AudioController instance;
     private void Awake() {
         if(AudioController.instance == null) AudioController.instance = this;
         else Destroy(this.gameObject);
+
+        DontDestroyOnLoad(this.gameObject);
     }
     private void Start() {
         InvokeRepeating("CatMeow", 2, 10);
@@ -30,4 +35,5 @@ public class AudioController : MonoBehaviour
     public void EatSFX()   {
         eat.Play();
     }
+    
 }

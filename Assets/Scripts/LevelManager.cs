@@ -37,6 +37,10 @@ public class LevelManager : MonoBehaviour
 
     public void ReplayScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadShop()  {
+        SceneManager.LoadScene(1);
     }
 }

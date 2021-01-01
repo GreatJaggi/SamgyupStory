@@ -43,11 +43,11 @@ public class Grill : MonoBehaviour
     public AudioSource sizzleSFX;
     private void Update() {
         // print("FOOD COUNT: " + foodCount);
-        if(foodCount > 0 && !sizzleSFX.isPlaying)   {
-            sizzleSFX.Play();
+        if(foodCount > 0 && !AudioController.instance.sizzle.isPlaying)   {
+            AudioController.instance.sizzle.Play();
         }
 
-        if(foodCount <= 0 && sizzleSFX.isPlaying)
-            sizzleSFX.Stop();
+        if(foodCount <= 0 && AudioController.instance.sizzle.isPlaying)
+            AudioController.instance.sizzle.Stop();
     }
 }

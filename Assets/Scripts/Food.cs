@@ -51,7 +51,7 @@ public class Food : MonoBehaviour
         Cat.instance.AddSatisfaction(foodObject.satisfactionPoint[(int)doneness]);
         GameObject.Find("Satisfaction Bar").GetComponent<Slider>().value = Cat.instance.GetSatisfaction();
         GameObject.Find("Satisfaction Bar").GetComponent<SatisfactionBar>().CheckGoal();
-
+/*
         if(doneness == Doneness.Done)   {
             CatEmotions.instance.EmoteHappy();
             CatEmotions.instance.gameObject.GetComponent<Animator>().SetTrigger("Happy");
@@ -66,7 +66,7 @@ public class Food : MonoBehaviour
             CatEmotions.instance.EmoteAngry();
             CatEmotions.instance.gameObject.GetComponent<Animator>().SetTrigger("Angry");
         }
-            
+*/            
         //this.gameObject.SetActive(false);
         Destroy(this.gameObject);
     }
