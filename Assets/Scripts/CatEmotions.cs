@@ -12,13 +12,21 @@ public class CatEmotions : MonoBehaviour
 
     public static CatEmotions instance;
     private void Awake() {
-        if(CatEmotions.instance == null)
+        if (CatEmotions.instance == null)
+        {
             CatEmotions.instance = this;
-        else Destroy(CatEmotions.instance.gameObject);
+        }
+        else
+        {
+            Destroy(CatEmotions.instance.gameObject);
+        }
     }
 
     private void Start() {
-        Invoke("EmoteHappy", 1);
+        if (gameObject.activeSelf)
+        {
+            Invoke("EmoteHappy", 1);
+        }
     }
 
 

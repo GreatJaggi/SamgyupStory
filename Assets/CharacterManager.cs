@@ -10,10 +10,13 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private string characterGameObjectPrefix = "Characters_";
     [SerializeField] private string gameLoopSceneName = "Gameplay_Loop";
     [SerializeField] private string characterSelectionSceneName = "CharacterSelection";
+    [SerializeField] private int numberOfCharacters = 6;
 
     [Header("References")]
+    [SerializeField] private Transform characterSpawnTransform;
     [SerializeField] private Transform characterSetTransform;
     [SerializeField] private CharacterSelection charSelection;
+    [SerializeField] private GameObject[] characterPrefabs;
 
     private string keyName = "selectedCharacterIndex";
 
@@ -35,8 +38,23 @@ public class CharacterManager : MonoBehaviour
             }
             else if( SceneManager.GetActiveScene().name == gameLoopSceneName )
             {
+                if( characterSpawnTransform != null && characterPrefabs.Length == numberOfCharacters )
+                {
+                    int selectedCharacterIndex = ES3.Load<int>(keyName);
+
+                    GameObject.Instantiate( characterPrefabs[ selectedCharacterIndex ], characterSpawnTransform.position, Quaternion.Euler( 0f, 180f, 0f ) );
+                }
+                else
+                {
+                    print("unable to load save data. check references.");
+                }
+
+                #region old code
+                /*
                 if (characterSetTransform != null)
                 {
+
+
                     int selectedCharacterIndex = ES3.Load<int>(keyName);
 
                     // set transform position
@@ -45,8 +63,11 @@ public class CharacterManager : MonoBehaviour
 
                     #region disable other characters in the set
 
+                    GameObject[] otherCharacters = new GameObject[ numberOfCharacters - 1 ];
+
                     Transform[] allChildTransforms = characterSetTransform.gameObject.GetComponentsInChildren<Transform>();
                     int currentCharacter = -1;
+                    int indexer = 0;
                     for( int i = 0; i < allChildTransforms.Length; i++ )
                     {
                         // check if current gameobject is a character game object
@@ -55,9 +76,15 @@ public class CharacterManager : MonoBehaviour
                             // disable character if it is not the character selected by the player
                             if( ++currentCharacter != selectedCharacterIndex )
                             {
-                                allChildTransforms[i].gameObject.SetActive(false);
+                                // allChildTransforms[i].gameObject.get;
+                                otherCharacters[indexer++] = allChildTransforms[i].gameObject;
                             }
                         }
+                    }
+
+                    for( int i = 0; i < otherCharacters.Length; i++ )
+                    {
+                        GameObject.Destroy( otherCharacters[ i ] );
                     }
 
                     #endregion
@@ -67,6 +94,10 @@ public class CharacterManager : MonoBehaviour
                 {
                     print("unable to load save data. check references.");
                 }
+
+                */
+                
+                #endregion
             }
         }
         else
