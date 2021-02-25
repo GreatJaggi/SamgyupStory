@@ -26,6 +26,13 @@ public class CharacterSelection : MonoBehaviour
         StartCoroutine(LerpTransform(characterSelectionTransform, -1 * Vector3.right * (5 * characterIndex), 0.25f));
     }
 
+    public void SetSelectedCharacter( int index )
+    {
+        characterIndex = index;
+
+        characterSelectionTransform.position = -1 * Vector3.right * (5 * characterIndex);
+    }
+
     IEnumerator LerpTransform(Transform target, Vector3 targetPosition, float duration)    {
         float elapsedTime = 0;
 
@@ -43,7 +50,7 @@ public class CharacterSelection : MonoBehaviour
     }
 
     private void Update() {
-        print("Character Index: " + characterIndex);
+        // print("Character Index: " + characterIndex);
     }
 
     public void UnlockCharacter()   {
