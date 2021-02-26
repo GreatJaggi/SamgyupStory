@@ -38,17 +38,8 @@ public class CharacterManager : MonoBehaviour
             }
             else if( SceneManager.GetActiveScene().name == gameLoopSceneName )
             {
-                if( characterSpawnTransform != null && characterPrefabs.Length == numberOfCharacters )
-                {
-                    int selectedCharacterIndex = ES3.Load<int>(keyName);
 
-                    GameObject.Instantiate( characterPrefabs[ selectedCharacterIndex ], characterSpawnTransform.position, Quaternion.Euler( 0f, 180f, 0f ) );
-                }
-                else
-                {
-                    print("unable to load save data. check references.");
-                }
-
+                LoadCharacter( ES3.Load<int>(keyName) );
                 #region old code
                 /*
                 if (characterSetTransform != null)
@@ -102,7 +93,8 @@ public class CharacterManager : MonoBehaviour
         }
         else
         {
-            print( "no save data exists" );
+            print("no save data exists. loading default character");
+            LoadCharacter(0);
         }
     }
 
@@ -110,5 +102,17 @@ public class CharacterManager : MonoBehaviour
     {
         ES3.Save<int>( keyName, charSelection.characterIndex );
         print( "character selection saved" );
+    }
+
+    private void LoadCharacter( int characterIndex )
+    {
+        if (characterSpawnTransform != null && characterPrefabs.Length == numberOfCharacters)
+        {
+            GameObject.Instantiate(characterPrefabs[characterIndex], characterSpawnTransform.position, Quaternion.Euler(0f, 180f, 0f));
+        }
+        else
+        {
+            print("failed to load character. check references.");
+        }
     }
 }
