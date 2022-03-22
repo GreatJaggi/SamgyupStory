@@ -12,6 +12,8 @@ public class AudioController : MonoBehaviour
     public AudioSource sizzle;
     public AudioSource tada;
     public static AudioController instance;
+
+    public bool isMute = false;
     private void Awake() {
         if(AudioController.instance == null) AudioController.instance = this;
         else Destroy(this.gameObject);
@@ -23,6 +25,7 @@ public class AudioController : MonoBehaviour
     }
 
     public void MuteAudio(bool mute) {
+        isMute = mute;
         if(!mute)
             mixer.SetFloat("MasterVolume", -80);
         else mixer.SetFloat("MasterVolume", 0);

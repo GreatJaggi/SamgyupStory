@@ -56,6 +56,7 @@ public class SatisfactionBar : MonoBehaviour
             print("Level Finish! Nice Try!");
 
             // Formula: r = v / ( g / 3 )
+            Debug.LogError((int)Mathf.Floor(slider.value / (goal / 3)));
             GameManager.instance.SetRating((int)Mathf.Floor(slider.value / (goal / 3)));
 
             GameManager.instance.LevelCompleted();

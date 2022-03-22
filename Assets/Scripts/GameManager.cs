@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public string satisfactionMessage;
 
     public int currentLevelIndex;
+
+    public Toggle SoundToggle;
     private void Awake()
     {
         if (GameManager.instance == null)
@@ -30,6 +33,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mainCamAnim = Camera.main.gameObject.GetComponent<Animator>();
+        SoundToggle.isOn = AudioController.instance.isMute;
+
+        SoundToggle.onValueChanged.AddListener((value) => {
+            AudioController.instance.MuteAudio(value); 
+        });
     }
 
     public void PlayGame()
@@ -64,6 +72,9 @@ public class GameManager : MonoBehaviour
         {
             rating = value;
             ES3.Save("Rating_LevelIndex_" + currentLevelIndex, rating);
+        }
+        else {
+            rating = value;
         }
             
     }

@@ -21,7 +21,8 @@ public class FinishLevel : MonoBehaviour
     void PopulateUI()
     {
         message.text = GameManager.instance.GenerateSatisfactionMessage();
-        levelInfo.text = "Level " + GameManager.instance.currentLevelIndex + 1;
+        int index = GameManager.instance.currentLevelIndex + 1;
+        levelInfo.text = "Level " + index;
 
         for (int i = 0; i < 3; i++)
             starRating[i].SetActive(false);
