@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
 
     public void SetLevel(int levelIndex)
     {
+        satisfactionBar.GetComponent<SatisfactionBar>().maxGoal = levels[levelIndex].GetComponent<LevelInformation>().GetMaxGoal();
         satisfactionBar.GetComponent<SatisfactionBar>().goal = levels[levelIndex].GetComponent<LevelInformation>().GetGoal();
         //levels[levelIndex].transform.DetachChildren();
 

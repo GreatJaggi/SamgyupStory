@@ -3,6 +3,7 @@
 public class LevelInformation : MonoBehaviour
 {
     public int levelIndex;
+    public int maxGoal;
     public float goal;
     public float gauge;
 
@@ -24,8 +25,11 @@ public class LevelInformation : MonoBehaviour
         return rating;
     }
 
-    public float GetGoal()
+    public float GetMaxGoal()
     {
+        return maxGoal;
+    }
+    public float GetGoal() {
         return goal;
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class SatisfactionBar : MonoBehaviour
 {
     public float goal;
+    public float maxGoal;
     public float gauge;
     Slider slider;
 
@@ -22,7 +23,7 @@ public class SatisfactionBar : MonoBehaviour
         GameManager.instance.rating = 0;
         Cat.instance.satisfaction = 0;
 
-        slider.maxValue = goal;
+        slider.maxValue = maxGoal;
         goalBar.maxValue = slider.maxValue;
         goalBar.value = goal;
 
