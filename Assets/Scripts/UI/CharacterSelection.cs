@@ -51,6 +51,7 @@ public class CharacterSelection : MonoBehaviour
 
     private void Update() {
         // print("Character Index: " + characterIndex);
+        
     }
 
     public void UnlockCharacter()   {
