@@ -11,9 +11,16 @@ public class Move3d : MonoBehaviour
     private float CameraYDistance;
 
     public int score;
+    public ParticleSystem FoodParticle;
+    public ParticleSystem GarbagePart;
+    public GameObject PlayerMascotRef;
 
+    public int Food;
+    public int Garbage;
     void Start()
     {
+        FoodParticle.Stop();
+        GarbagePart.Stop();
         mainCamera = Camera.main;
         CameraZDistance = 
             mainCamera.WorldToScreenPoint(transform.position).z;
@@ -27,7 +34,7 @@ public class Move3d : MonoBehaviour
         Vector3 ScreenPosition = 
             new Vector3(Input.mousePosition.x, CameraYDistance, CameraZDistance);
 
-        ScreenPosition.x = Mathf.Clamp(ScreenPosition.x, 150, 930);
+        ScreenPosition.x = Mathf.Clamp(ScreenPosition.x, 180, 900);
         
         
         Vector3 NewWorldPosition = 
@@ -35,5 +42,29 @@ public class Move3d : MonoBehaviour
         transform.position = NewWorldPosition;
     }
 
-    
+    public void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Food")
+        {
+            Food++;
+            FoodParticle.Play();
+            PlayerMascotRef.GetComponent<Animator>().SetTrigger("Happy");
+        }
+        if(col.gameObject.tag == "Garbage")
+        {
+            Garbage++;
+            GarbagePart.Play();
+            PlayerMascotRef.GetComponent<Animator>().SetTrigger("Angry");
+        }
+    }
+
+    public void Success()
+    {
+        PlayerMascotRef.GetComponent<Animator>().SetTrigger("Wave");
+    }
+
+    public void Failed()
+    {
+        PlayerMascotRef.GetComponent<Animator>().SetTrigger("Sad");
+    }
 }

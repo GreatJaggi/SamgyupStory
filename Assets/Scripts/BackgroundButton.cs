@@ -32,7 +32,6 @@ public class BackgroundButton : MonoBehaviour
            
         }
 
-        
     }
 
 }

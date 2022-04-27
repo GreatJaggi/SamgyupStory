@@ -20,6 +20,8 @@ public class CharacterManager : MonoBehaviour
 
     private string keyName = "selectedCharacterIndex";
 
+    public int sa;
+
     private void Start()
     {
         if( ES3.KeyExists( keyName ) )
@@ -30,6 +32,7 @@ public class CharacterManager : MonoBehaviour
                 if (charSelection != null)
                 {
                     charSelection.SetSelectedCharacter(ES3.Load<int>(keyName));
+                    
                 }
                 else
                 {
@@ -38,7 +41,7 @@ public class CharacterManager : MonoBehaviour
             }
             else if( SceneManager.GetActiveScene().name == gameLoopSceneName )
             {
-
+                print("LoadCharacter");
                 LoadCharacter( ES3.Load<int>(keyName) );
                 #region old code
                 /*
@@ -96,6 +99,8 @@ public class CharacterManager : MonoBehaviour
             print("no save data exists. loading default character");
             LoadCharacter(0);
         }
+        sa = ES3.Load<int>(keyName);
+        
     }
 
     public void SaveSelection()
