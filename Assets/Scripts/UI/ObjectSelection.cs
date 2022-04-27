@@ -62,4 +62,9 @@ public class ObjectSelection : MonoBehaviour
     {
         characterGroup[characterIndex].GetComponent<CharacterAnimationController>().AnimateHappy();
     }
+
+    public void Click()
+    {
+        SetSelectedObject(characterIndex);
+    }
 }
