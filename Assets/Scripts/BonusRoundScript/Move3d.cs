@@ -15,8 +15,11 @@ public class Move3d : MonoBehaviour
     public ParticleSystem GarbagePart;
     public GameObject PlayerMascotRef;
 
+<<<<<<< HEAD
     public int Food;
     public int Garbage;
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     void Start()
     {
         FoodParticle.Stop();
@@ -46,17 +49,24 @@ public class Move3d : MonoBehaviour
     {
         if(col.gameObject.tag == "Food")
         {
+<<<<<<< HEAD
             Food++;
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
             FoodParticle.Play();
             PlayerMascotRef.GetComponent<Animator>().SetTrigger("Happy");
         }
         if(col.gameObject.tag == "Garbage")
         {
+<<<<<<< HEAD
             Garbage++;
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
             GarbagePart.Play();
             PlayerMascotRef.GetComponent<Animator>().SetTrigger("Angry");
         }
     }
+<<<<<<< HEAD
 
     public void Success()
     {
@@ -67,4 +77,6 @@ public class Move3d : MonoBehaviour
     {
         PlayerMascotRef.GetComponent<Animator>().SetTrigger("Sad");
     }
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
 }

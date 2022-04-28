@@ -36,7 +36,10 @@ public class CustomizationHolder : MonoBehaviour
     }
     public void LoadSelectionBG()
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
         background.no = ES3.Load<int>(backgroundIndexs);
         //background.bg[background.no].SetActive(true);
         Debug.Log(background.no);
@@ -50,10 +53,14 @@ public class CustomizationHolder : MonoBehaviour
 
     public void LoadSelectionGr()
     {
+<<<<<<< HEAD
         if(grill != null)
         {
         grill.noG = ES3.Load<int>(grillIndexs);
         }
+=======
+        grill.noG = ES3.Load<int>(grillIndexs);
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     }
 
     //ChopstickEasySave
@@ -63,10 +70,14 @@ public class CustomizationHolder : MonoBehaviour
     }
     public void LoadSelectionCS()
     {
+<<<<<<< HEAD
         if(CStick != null)
         {
         CStick.noS = ES3.Load<int>(chopstickIndexs);
         }
+=======
+        CStick.noS = ES3.Load<int>(chopstickIndexs);
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     }
 
 

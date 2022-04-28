@@ -18,15 +18,21 @@ public class Spawning : MonoBehaviour
     int GarbageHolder;
     int spawnPointHolder;
     int SpawnListNo = 0;
+<<<<<<< HEAD
 
     public GameObject Finish;
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     
     // FoodVariable
     float Speed = 3;
     float sp = 1;
+<<<<<<< HEAD
 
     //Animation Finish
     public Move3d anim;
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     
     void Start()
     {
@@ -38,6 +44,7 @@ public class Spawning : MonoBehaviour
 
     void Spawned()
     {
+<<<<<<< HEAD
         if(SpawnListNo < 70)
         {
             if(SpawnListNo < 60)
@@ -67,6 +74,23 @@ public class Spawning : MonoBehaviour
                 SpawnListNo++;
                 Invoke("Spawned",1);
             }
+=======
+        if(SpawnListNo < 60)
+        {
+            if(SpawnListNo == 19)
+            {
+                Speed = 6;
+                sp = 0.75f;
+            }
+            if (SpawnListNo == 39)
+            {
+                Speed = 9;
+                sp = 0.5f;
+            }
+        //SpawnList(SpawnListNo);
+        SpawningFG();
+        Invoke("SpawnType", sp);
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
         }
     }
 
@@ -526,6 +550,7 @@ public class Spawning : MonoBehaviour
         SpawnListNo++;
         Spawned();
     }
+<<<<<<< HEAD
 
 
     void Summary()
@@ -542,4 +567,6 @@ public class Spawning : MonoBehaviour
             anim.Failed();
         }
     }
+=======
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
 }
