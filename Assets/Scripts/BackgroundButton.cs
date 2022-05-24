@@ -32,7 +32,10 @@ public class BackgroundButton : MonoBehaviour
            
         }
 
+<<<<<<< HEAD
+=======
         
+>>>>>>> 242ac70189bfcd5c0bfffedc6c0271749497af59
     }
 
 }
