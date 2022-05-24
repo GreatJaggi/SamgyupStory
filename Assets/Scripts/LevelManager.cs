@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     public GameObject[] levels;
     public GameObject satisfactionBar;
 
+    int IndexLevel;
+
     private void Awake()
     {
         int ratingSum = 0;
@@ -23,7 +25,8 @@ public class LevelManager : MonoBehaviour
         satisfactionBar.GetComponent<SatisfactionBar>().maxGoal = levels[levelIndex].GetComponent<LevelInformation>().GetMaxGoal();
         satisfactionBar.GetComponent<SatisfactionBar>().goal = levels[levelIndex].GetComponent<LevelInformation>().GetGoal();
         //levels[levelIndex].transform.DetachChildren();
-
+        IndexLevel = levelIndex;
+        
         GameManager.instance.currentLevelIndex = levelIndex;
 
         GameObject clone = GameObject.Instantiate(levels[levelIndex]);
@@ -38,10 +41,28 @@ public class LevelManager : MonoBehaviour
 
     public void ReplayScene()
     {
+        if(IndexLevel == 9)
+        {
+        SceneManager.LoadScene(2);
+        }
+        else
+        {
+        SceneManager.LoadScene(0);
+        }
+    }
+
+    public void LoadShop()  
+    {       
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadBonus()
+    {
         SceneManager.LoadScene(0);
     }
 
-    public void LoadShop()  {
-        SceneManager.LoadScene(1);
+    public void LoadBonusRound()
+    {
+        SceneManager.LoadScene(2);
     }
 }

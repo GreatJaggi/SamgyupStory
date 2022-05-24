@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharacterSelection.unity
     guid: 18137be00d343bf40992783381c053fc
+  - enabled: 1
+    path: Assets/Scenes/BonusRound.unity
+    guid: 6adfbe85b2922dc4499b111c6e2370cb
   m_configObjects: {}

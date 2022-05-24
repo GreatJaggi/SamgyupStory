@@ -6,6 +6,7 @@ public class Falling : MonoBehaviour
 {
     public float speed;
     public float score;
+    public Move3d sa;
     
     void Update()
     {
@@ -23,13 +24,17 @@ public class Falling : MonoBehaviour
         {
             Destroy(this.gameObject);
             Debug.Log(this.gameObject.name);
+            
         }
         if(col.gameObject.tag == "Ground")
         {
             Destroy(this.gameObject);
         }
+       
         
     }
+
+    
    
     
 }

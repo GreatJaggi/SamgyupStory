@@ -22,32 +22,86 @@ public class Spawning : MonoBehaviour
     // FoodVariable
     float Speed = 3;
     float sp = 1;
+
+
+    public Move3d characAnim;
+    public GameObject HUD;
+
+
+    public LevelManager LevMan;
     
     void Start()
     {
-        Spawned();
+        //Spawned();
         //GameObject spawn = Instantiate(Food[0],spawnPoint[1].transform);
         //spawn.GetComponent<Falling>().speed = Speed;
     }
 
+    
 
-    void Spawned()
+
+    public void Spawned()
     {
-        if(SpawnListNo < 60)
+        if(SpawnListNo < 80)
         {
-            if(SpawnListNo == 19)
+            if(SpawnListNo > 6 && SpawnListNo < 70)
             {
-                Speed = 6;
-                sp = 0.75f;
+                if(SpawnListNo == 19)
+                {
+                    Speed = 5;
+                    sp = 0.80f;
+                }
+                if (SpawnListNo == 39)
+                 {
+                    Speed = 8;
+                    sp = 0.75f;
+                }
+                 //SpawnList(SpawnListNo);
+                 SpawningFG();
+                 Invoke("SpawnType", sp);
             }
-            if (SpawnListNo == 39)
+            else
             {
-                Speed = 9;
-                sp = 0.5f;
+                if(SpawnListNo == 0)
+                {
+                    HUD.GetComponent<DisplayHUD>().d = 0;
+                }
+                if (SpawnListNo == 1)
+                {
+                    HUD.GetComponent<DisplayHUD>().d = 1;
+                }
+                if (SpawnListNo == 2)
+                {
+                    HUD.GetComponent<DisplayHUD>().d = 2;
+                }
+                if (SpawnListNo == 3)
+                {
+                    HUD.GetComponent<DisplayHUD>().d = 3;
+                }
+                if (SpawnListNo == 4)
+                {
+                    HUD.GetComponent<DisplayHUD>().d = 4;
+                }
+                if(SpawnListNo == 5)
+                {
+                    HUD.SetActive(false);
+                }
+                
+                
+                if (SpawnListNo == 73)
+                {
+
+                    HUD.SetActive(true);
+                    characAnim.Finish();
+                }
+                if(SpawnListNo == 76)
+                {
+                    LevMan.ReplayScene();
+                }
+                SpawnListNo++;
+                print(SpawnListNo);
+                Invoke("Spawned", 1);
             }
-        //SpawnList(SpawnListNo);
-        SpawningFG();
-        Invoke("SpawnType", sp);
         }
     }
 

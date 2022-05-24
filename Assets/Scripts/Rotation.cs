@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 10, 0);
+        float x = 10 * Time.deltaTime * 10;
+        transform.Rotate(0, x, 0) ;
     }
 }

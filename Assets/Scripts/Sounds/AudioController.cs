@@ -39,4 +39,8 @@ public class AudioController : MonoBehaviour
         eat.Play();
     }
     
+    public void TadaEnd()
+    {
+        tada.Play();
+    }
 }

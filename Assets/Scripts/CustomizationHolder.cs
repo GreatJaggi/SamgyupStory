@@ -49,7 +49,10 @@ public class CustomizationHolder : MonoBehaviour
 
     public void LoadSelectionGr()
     {
+        if (grill != null)
+        {
         grill.noG = ES3.Load<int>(grillIndexs);
+        }
     }
 
     //ChopstickEasySave
@@ -59,7 +62,10 @@ public class CustomizationHolder : MonoBehaviour
     }
     public void LoadSelectionCS()
     {
+        if (CStick)
+        {
         CStick.noS = ES3.Load<int>(chopstickIndexs);
+        }
     }
 
 
